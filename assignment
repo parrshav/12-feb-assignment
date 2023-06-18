@@ -1,0 +1,88 @@
+What is an Exception in pthon? Write the difference between Exceptions and syntax errors
+In Python, an exception is an event that occurs during the execution of a program, resulting in the disruption of the normal flow of code. When an exceptional situation arises, such as an error or an unexpected condition, Python raises an exception to handle it gracefully.
+
+Exceptions are categorized into different types based on the specific error or condition they represent. Some common types of exceptions in Python include:
+The key difference between exceptions and syntax errors is that exceptions occur during the execution of the code, while syntax errors are identified by the Python interpreter before executing the code. Syntax errors indicate invalid Python syntax and prevent the code from running at all, while exceptions can occur during runtime based on specific conditions and can be caught and handled using exception handling mec
+Q2. What happens when an exception is not handled? Explain with an example
+When an exception is not handled in Python, it results in the termination of the program's normal execution and the generation of an error message traceback. This traceback provides information about the exception that occurred, including the type of exception, the line number where it occurred, and the sequence of function calls that led to the exception
+def divide_numbers(a, b):
+    result = a / b
+    return result
+
+num1 = 10
+num2 = 0
+result = divide_numbers(num1, num2)
+print("Result:", result)
+Q3. Which Python statements are used to catch and handle exceptions? Explain withan example
+In Python, you can use try-except statements to catch and handle exceptions. The try block contains the code where an exception might occur, and the except block specifies the actions to be taken if a particular exception is raised. Here's the syntax:
+def divide_numbers(a, b):
+    try:
+        result = a / b
+        print("Result:", result)
+    except ZeroDivisionError:
+        print("Error: Division by zero is not allowed!")
+
+num1 = 10
+num2 = 0
+divide_numbers(num1, num2)
+Error: Division by zero is not allowed!
+Q-Explain withan example:
+
+ try and else
+ finall
+ raise
+ 
+ 
+ Q-What are Custom Exceptions in python? Why do we need Custom Exceptions? Explain with an example
+ try:
+    num1 = int(input("Enter a number: "))
+    num2 = int(input("Enter another number: "))
+    result = num1 / num2
+except ValueError:
+    print("Invalid input. Please enter a valid integer.")
+except ZeroDivisionError:
+    print("Error: Division by zero is not allowed!")
+else:
+    print("Result:", result)
+In this example, the try block attempts to take two integer inputs from the user and perform division. If a ValueError occurs (e.g., when a non-integer is entered) or a ZeroDivisionError occurs, the corresponding except block is executed. However, if no exception is raised, the code inside the else block is executed, which prints the result.
+ try:
+    file = open("data.txt", "r")
+    content = file.read()
+    print("File content:", content)
+except FileNotFoundError:
+    print("Error: File not found!")
+finally:
+    file.close()
+In this example, the try block attempts to open and read the contents of a file. If a FileNotFoundError occurs (when the file doesn't exist), the corresponding except block is executed. Regardless of whether an exception occurs or not, the finally block is executed, which ensures the file is closed, even if an exception is raised.
+ def validate_age(age):
+    if age < 0:
+        raise ValueError("Age cannot be negative.")
+    elif age > 120:
+        raise ValueError("Invalid age. Age limit exceeded.")
+    else:
+        print("Valid age:", age)
+
+try:
+    age = int(input("Enter your age: "))
+    validate_age(age)
+except ValueError as err:
+    print("Error:", str(err))
+In this example, the validate_age function raises a ValueError if the input age is negative or exceeds 120. In the try block, the user is asked to input their age, and it is passed to the validate_age function. If a ValueError is raised, the corresponding except block captures the exception and prints the error message.
+ Q6. Create custom exception ,class. Use this ,class to handle an exception.
+ class CustomException(Exception):
+    def __init__(self, message):
+        self.message = message
+
+def validate_input(value):
+    if not value.isnumeric():
+        raise CustomException("Invalid input. Input should be numeric.")
+
+try:
+    user_input = input("Enter a number: ")
+    validate_input(user_input)
+    # Further code to process the valid input
+    print("Input is valid:", user_input)
+except CustomException as error:
+    print("Custom Exception:", error.message)
+
+ 
